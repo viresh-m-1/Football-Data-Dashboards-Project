@@ -10,7 +10,7 @@ Personal project testing my ability with Power BI to create visuals using public
 
 ### Methods
 - Set-up: Power Query, import flatfile, using star schema method to connect tables
-- Analysing data: DAX, charts, measures
+- Analysing data: DAX, charts, measures, slicers
 - AI: usage to resolve errors within measures
 
 ### Dashboard examples
