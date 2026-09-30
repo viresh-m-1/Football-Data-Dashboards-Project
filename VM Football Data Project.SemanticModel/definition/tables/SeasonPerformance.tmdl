@@ -1,0 +1,121 @@
+table SeasonPerformance
+	lineageTag: 733b2cae-295e-41fd-8133-553c23085f09
+
+	measure PreviousSeasonText =
+			
+			VAR CurrentSeason = SELECTEDVALUE('SeasonPerformance'[season_name])
+			VAR StartYear = VALUE(LEFT(CurrentSeason, 2))
+			VAR PrevStart = StartYear - 1
+			VAR PrevEnd = PrevStart + 1
+			RETURN FORMAT(PrevStart, "00") & "/" & FORMAT(PrevEnd, "00")
+		lineageTag: a9f2a6ba-c5ff-44ab-9406-a79ffe137d61
+
+	measure MarketValuePctChange =
+			
+			VAR CurrentPlayer = SELECTEDVALUE('SeasonEndMarketValue'[player_id])
+			VAR CurrentSeason = SELECTEDVALUE('SeasonEndMarketValue'[season])
+			VAR CurrentValue = SELECTEDVALUE('SeasonEndMarketValue'[Last_Value])
+			VAR PrevSeason = [PreviousSeasonText]
+			VAR PrevValue =
+			    CALCULATE(
+			        MAX('SeasonEndMarketValue'[Last_Value]),
+			        FILTER(
+			            ALL('SeasonEndMarketValue'),
+			            'SeasonEndMarketValue'[player_id] = CurrentPlayer
+			            && 'SeasonEndMarketValue'[season] = PrevSeason
+			        )
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(PrevValue) || PrevValue = 0,
+			        BLANK(),
+			        (CurrentValue - PrevValue) / PrevValue * 100
+			    )
+		lineageTag: 03d85d27-fac3-4cee-900f-4c39a9725ebe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure PerformancePctChange =
+			
+			VAR CurrentPlayer = SELECTEDVALUE('SeasonPerformance'[player_id])
+			VAR CurrentSeason = SELECTEDVALUE('SeasonPerformance'[season_name])
+			VAR CurrentPerf = SELECTEDVALUE('SeasonPerformance'[Total_Goals_Assists])
+			VAR PrevSeason = [PreviousSeasonText]
+			VAR PrevPerf =
+			    CALCULATE(
+			        SUM('SeasonPerformance'[Total_Goals_Assists]),
+			        FILTER(
+			            ALL('SeasonPerformance'),
+			            'SeasonPerformance'[player_id] = CurrentPlayer
+			            && 'SeasonPerformance'[season_name] = PrevSeason
+			        )
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(PrevPerf) || PrevPerf = 0,
+			        BLANK(),
+			        (CurrentPerf - PrevPerf) / PrevPerf * 100
+			    )
+		lineageTag: cedfc8ad-d14f-4e7e-8df2-933d36b7cd29
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column player_id
+		formatString: 0
+		lineageTag: 70481023-7620-43d4-a900-be28339e29b6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: player_performances[player_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_name
+		lineageTag: d7fb2d3e-e3dd-41a6-a234-27c5815f814f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: player_performances[season_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Goals
+		formatString: 0
+		lineageTag: f1ca6f6f-5301-4b2f-b01e-aaf68ac690b4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Goals]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Assists
+		formatString: 0
+		lineageTag: b19c7519-c404-45ff-b311-ef12955f000d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Assists]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Goals_Assists
+		formatString: 0
+		lineageTag: 90415c3b-b9d2-42d6-9857-7420ff5d1f33
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Total_Goals_Assists]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SeasonPerformance = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE(
+				    'player_performances',
+				    'player_performances'[player_id],
+				    'player_performances'[season_name],
+				    "Goals", SUM('player_performances'[goals]),
+				    "Assists", SUM('player_performances'[assists]),
+				    "Total_Goals_Assists", SUM('player_performances'[goals]) + SUM('player_performances'[assists])
+				)
+
+	annotation PBI_Id = 390c1dc39c5f40339dcbffd51d6f5858
+

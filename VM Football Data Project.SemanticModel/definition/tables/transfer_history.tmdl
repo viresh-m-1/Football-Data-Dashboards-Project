@@ -1,0 +1,121 @@
+table transfer_history
+	lineageTag: 2a4098cf-b0c7-4dfc-807c-ecd63ff06ca5
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0be97b23-e020-4dcd-a1db-518688672051
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_name
+		dataType: string
+		lineageTag: 642c4451-6d63-4345-a029-6b82e8345191
+		summarizeBy: none
+		sourceColumn: season_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7ba44f69-4620-4ed3-9b55-d844a0cf7ab2
+		summarizeBy: none
+		sourceColumn: transfer_date
+
+		variation Variation
+			isDefault
+			relationship: 3476898f-a145-4025-ba15-5bd8d38e5add
+			defaultHierarchy: LocalDateTable_f552a950-a66d-464e-8415-7bdce5886ea1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column from_team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 682443fb-9b3a-4253-b97c-eafaf5ee2b64
+		summarizeBy: sum
+		sourceColumn: from_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_team_name
+		dataType: string
+		lineageTag: 5500d044-899c-4266-93aa-ac1361fbe793
+		summarizeBy: none
+		sourceColumn: from_team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 177ecb26-4ab8-42f9-b5b7-bb7b34fe884b
+		summarizeBy: sum
+		sourceColumn: to_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_team_name
+		dataType: string
+		lineageTag: 96c28ca5-5ae6-4bc5-b4c0-f64ca27ba821
+		summarizeBy: none
+		sourceColumn: to_team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_type
+		dataType: string
+		lineageTag: 63c80807-75e6-400a-a432-5179d9d3426a
+		summarizeBy: none
+		sourceColumn: transfer_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column value_at_transfer
+		dataType: int64
+		formatString: 0
+		lineageTag: c8c5f140-0abc-45d6-810f-7287e77febaf
+		summarizeBy: sum
+		sourceColumn: value_at_transfer
+
+		annotation SummarizationSetBy = Automatic
+
+	column transfer_fee
+		dataType: int64
+		formatString: 0
+		lineageTag: 4348dc9f-2c3b-46cf-aa8f-131a3d5964ab
+		summarizeBy: sum
+		sourceColumn: transfer_fee
+
+		annotation SummarizationSetBy = Automatic
+
+	column Transfer_Value_Difference =
+			
+			IF(
+			    [transfer_type] = "transfer",
+			    [value_at_transfer] - [transfer_fee],
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: 2e42d757-4ac2-4678-a7cd-1e32b787d6f0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition transfer_history = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\transfer_history.csv"),[Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"player_id", Int64.Type}, {"season_name", type text}, {"transfer_date", type date}, {"from_team_id", Int64.Type}, {"from_team_name", type text}, {"to_team_id", Int64.Type}, {"to_team_name", type text}, {"transfer_type", type text}, {"value_at_transfer", Int64.Type}, {"transfer_fee", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

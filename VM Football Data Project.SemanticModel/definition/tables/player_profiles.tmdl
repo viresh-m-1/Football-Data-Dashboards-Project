@@ -1,0 +1,333 @@
+table player_profiles
+	lineageTag: 489d9443-64e7-439e-a4d3-e85627587b8d
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f3e90f5-c74a-4d32-b419-c430c3c166e1
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_slug
+		dataType: string
+		lineageTag: 3bbf25ae-7358-46e3-942d-fc7117e0f0fd
+		summarizeBy: none
+		sourceColumn: player_slug
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_name
+		dataType: string
+		lineageTag: 295c3a79-faee-49da-912e-df1081b21940
+		summarizeBy: none
+		sourceColumn: player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_image_url
+		dataType: string
+		lineageTag: 98f85688-2d8e-4476-9612-70874c4c6f9a
+		summarizeBy: none
+		sourceColumn: player_image_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column name_in_home_country
+		dataType: string
+		lineageTag: a584143c-e3dc-4df3-88fc-05d6392598cc
+		summarizeBy: none
+		sourceColumn: name_in_home_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_of_birth
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3b72c7c5-197b-4ec7-b8cd-1be48b2e2c5e
+		summarizeBy: none
+		sourceColumn: date_of_birth
+
+		variation Variation
+			isDefault
+			relationship: a0ae8807-0f33-4bf7-9eaa-8e24679a9468
+			defaultHierarchy: LocalDateTable_b2466372-f244-433a-88fc-fcacb5c9b22c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column place_of_birth
+		dataType: string
+		lineageTag: 70042817-8b61-4047-8d06-1c298b293c8a
+		summarizeBy: none
+		sourceColumn: place_of_birth
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_of_birth
+		dataType: string
+		lineageTag: a8124409-9761-4c1d-b179-a70cb7d4fab9
+		summarizeBy: none
+		sourceColumn: country_of_birth
+
+		annotation SummarizationSetBy = Automatic
+
+	column height
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c755be2-6372-48d9-bf9d-9a46391d160d
+		summarizeBy: sum
+		sourceColumn: height
+
+		annotation SummarizationSetBy = Automatic
+
+	column citizenship
+		dataType: string
+		lineageTag: b41d301a-5809-406c-947d-ae7e70c371b6
+		summarizeBy: none
+		sourceColumn: citizenship
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_eu
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d0b1cb00-b081-404f-870e-09b13ba87a04
+		summarizeBy: none
+		sourceColumn: is_eu
+
+		annotation SummarizationSetBy = Automatic
+
+	column position
+		dataType: string
+		lineageTag: cc7175b4-764b-4af0-9cf1-663fc4b33579
+		summarizeBy: none
+		sourceColumn: position
+
+		annotation SummarizationSetBy = Automatic
+
+	column main_position
+		dataType: string
+		lineageTag: 2f605b81-6704-4f5b-b755-7aa9984e419f
+		summarizeBy: none
+		sourceColumn: main_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column foot
+		dataType: string
+		lineageTag: fc8d4b47-ef8d-4ab2-9c9e-80577ed8039a
+		summarizeBy: none
+		sourceColumn: foot
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d81cf28-00cc-49e6-8c37-7921f5cc0994
+		summarizeBy: none
+		sourceColumn: current_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column current_club_name
+		dataType: string
+		lineageTag: 34f5e2dd-44b4-40e8-a5e9-a79924a7aec0
+		summarizeBy: none
+		sourceColumn: current_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column joined
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f13dfb9d-7850-4fe1-9de1-434ea6ac3c60
+		summarizeBy: none
+		sourceColumn: joined
+
+		variation Variation
+			isDefault
+			relationship: 1e2f53f9-9289-41ac-9dcd-eec73bb3f4af
+			defaultHierarchy: LocalDateTable_61588105-09ef-4e0e-a549-394c8b4857c9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column contract_expires
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 31aa0c73-992d-4333-941b-70f464b7f023
+		summarizeBy: none
+		sourceColumn: contract_expires
+
+		variation Variation
+			isDefault
+			relationship: 38ddb232-0942-4622-8d74-06568e6ec12c
+			defaultHierarchy: LocalDateTable_771a062e-1326-4a33-8ed2-10352af191d1.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column outfitter
+		dataType: string
+		lineageTag: f04e20f2-12dc-475f-8aec-227beb4df070
+		summarizeBy: none
+		sourceColumn: outfitter
+
+		annotation SummarizationSetBy = Automatic
+
+	column social_media_url
+		dataType: string
+		lineageTag: 37d56279-a837-487c-9100-d0d9d7f3f2cf
+		summarizeBy: none
+		sourceColumn: social_media_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_agent_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e5c4bdc9-0c86-4a56-9d6f-bff47a288fc4
+		summarizeBy: sum
+		sourceColumn: player_agent_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column player_agent_name
+		dataType: string
+		lineageTag: 46b3adc1-6353-4f63-98ec-cf1523eddd43
+		summarizeBy: none
+		sourceColumn: player_agent_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column contract_option
+		dataType: string
+		lineageTag: 08385c0c-2fee-4113-9e5e-d70fbcc8fea8
+		summarizeBy: none
+		sourceColumn: contract_option
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_of_last_contract_extension
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d4ad4d93-e024-4b9a-a9fb-6d4d649e2b37
+		summarizeBy: none
+		sourceColumn: date_of_last_contract_extension
+
+		variation Variation
+			isDefault
+			relationship: d326038f-3670-407c-807b-3ec100b480d7
+			defaultHierarchy: LocalDateTable_10a4d0f6-84f7-4b3c-b645-c7ce78954324.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column on_loan_from_club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0cb85abf-f488-444c-bbc9-750d27b26429
+		summarizeBy: sum
+		sourceColumn: on_loan_from_club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column on_loan_from_club_name
+		dataType: string
+		lineageTag: f390ec77-5a6f-422b-8926-69cc126ef5d8
+		summarizeBy: none
+		sourceColumn: on_loan_from_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column contract_there_expires
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 259710ac-0835-4625-b31a-795a607e02fb
+		summarizeBy: none
+		sourceColumn: contract_there_expires
+
+		variation Variation
+			isDefault
+			relationship: 3a4114ab-0004-4f42-b7a4-786ca18ddb55
+			defaultHierarchy: LocalDateTable_96abd42a-4a6b-4056-849f-bda22c188365.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column second_club_url
+		dataType: string
+		lineageTag: 6bd05781-bd80-4d29-a9c2-5003bf981498
+		summarizeBy: none
+		sourceColumn: second_club_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column second_club_name
+		dataType: string
+		lineageTag: 0313dbf8-f3c9-4713-bbbd-62a8bbf213b0
+		summarizeBy: none
+		sourceColumn: second_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_club_url
+		dataType: string
+		lineageTag: 3bf0d769-b30b-4435-a71d-fa5474c17582
+		summarizeBy: none
+		sourceColumn: third_club_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column third_club_name
+		dataType: string
+		lineageTag: 0b5041f9-90d6-48b0-b8d7-53edc574acba
+		summarizeBy: none
+		sourceColumn: third_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column fourth_club_url
+		dataType: string
+		lineageTag: 8a470ab2-2299-4846-a32c-7eb5b4b76f77
+		summarizeBy: none
+		sourceColumn: fourth_club_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column fourth_club_name
+		dataType: string
+		lineageTag: f0611787-cfdf-4674-a798-88e8aa4a4d78
+		summarizeBy: none
+		sourceColumn: fourth_club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_of_death
+		dataType: string
+		lineageTag: 3f1b6872-3907-4f21-92f3-be2fe55630d3
+		summarizeBy: none
+		sourceColumn: date_of_death
+
+		annotation SummarizationSetBy = Automatic
+
+	partition player_profiles = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\player_profiles.csv"),[Delimiter=",", Columns=34, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"player_id", Int64.Type}, {"player_slug", type text}, {"player_name", type text}, {"player_image_url", type text}, {"name_in_home_country", type text}, {"date_of_birth", type date}, {"place_of_birth", type text}, {"country_of_birth", type text}, {"height", Int64.Type}, {"citizenship", type text}, {"is_eu", type logical}, {"position", type text}, {"main_position", type text}, {"foot", type text}, {"current_club_id", Int64.Type}, {"current_club_name", type text}, {"joined", type date}, {"contract_expires", type date}, {"outfitter", type text}, {"social_media_url", type text}, {"player_agent_id", Int64.Type}, {"player_agent_name", type text}, {"contract_option", type text}, {"date_of_last_contract_extension", type date}, {"on_loan_from_club_id", Int64.Type}, {"on_loan_from_club_name", type text}, {"contract_there_expires", type date}, {"second_club_url", type text}, {"second_club_name", type text}, {"third_club_url", type text}, {"third_club_name", type text}, {"fourth_club_url", type text}, {"fourth_club_name", type text}, {"date_of_death", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,69 @@
+table player_teammates_played_with
+	lineageTag: a4044069-2821-4b1e-889e-68ebf4756214
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 41b651e6-6ad3-4e36-b025-94d88e64872b
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column teammate_player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a120618-b435-4481-b5ca-15004e579054
+		summarizeBy: sum
+		sourceColumn: teammate_player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column teammate_player_name
+		dataType: string
+		lineageTag: a12f4b01-6450-45ad-ad30-8ba40756e0f0
+		summarizeBy: none
+		sourceColumn: teammate_player_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ppg_played_with
+		dataType: double
+		lineageTag: 542d60d9-1733-4f43-83d9-ed9a884fc119
+		summarizeBy: sum
+		sourceColumn: ppg_played_with
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column joint_goal_participation
+		dataType: int64
+		formatString: 0
+		lineageTag: 7baafe5e-be6a-428d-81f5-f849ed0796e7
+		summarizeBy: sum
+		sourceColumn: joint_goal_participation
+
+		annotation SummarizationSetBy = Automatic
+
+	column minutes_played_with
+		dataType: int64
+		formatString: 0
+		lineageTag: 3d9dade7-e657-4750-ae2a-1cfd8e345fdd
+		summarizeBy: sum
+		sourceColumn: minutes_played_with
+
+		annotation SummarizationSetBy = Automatic
+
+	partition player_teammates_played_with = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\player_teammates_played_with.csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"player_id", Int64.Type}, {"teammate_player_id", Int64.Type}, {"teammate_player_name", type text}, {"ppg_played_with", type number}, {"joint_goal_participation", Int64.Type}, {"minutes_played_with", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

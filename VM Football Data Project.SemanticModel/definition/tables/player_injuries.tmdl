@@ -1,0 +1,110 @@
+table player_injuries
+	lineageTag: 04e66a16-cf4e-4150-bf1c-e7f17aaac76b
+
+	measure GamesMissedPerSeason = SUM(player_injuries[games_missed])
+		formatString: 0
+		lineageTag: 7b4351eb-cc3f-4cf0-8379-5349d2dad8e3
+
+	measure 'Sum of games_missed total for season_name' =
+			
+			CALCULATE(
+				SUM('player_injuries'[games_missed]),
+				SELECTCOLUMNS('player_injuries'[season_name])
+			)
+		lineageTag: a2a2f831-e4b2-43e0-99e3-d9949b61420a
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "TotalForSelectedCategory"
+				}
+
+		changedProperty = FormatString
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e3873a42-c746-47a2-862c-d0394e5063ef
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_name
+		dataType: string
+		lineageTag: 79261ef7-309b-430c-b4ac-182c73db08b7
+		summarizeBy: none
+		sourceColumn: season_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column injury_reason
+		dataType: string
+		lineageTag: 0b92dfe8-3b8e-4358-b2d8-6da7f4dbbffa
+		summarizeBy: none
+		sourceColumn: injury_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 996d788e-1b13-4def-aeb0-ab357d0c52e1
+		summarizeBy: none
+		sourceColumn: from_date
+
+		variation Variation
+			isDefault
+			relationship: 7fe42caa-c961-4101-bab0-661ccdab79ed
+			defaultHierarchy: LocalDateTable_752e3e9d-0aec-4023-8553-4ecd047c1722.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 032867d7-8337-46d6-900d-c26129788bc4
+		summarizeBy: none
+		sourceColumn: end_date
+
+		variation Variation
+			isDefault
+			relationship: ce0c07bb-36ba-4785-b466-2a9d8c3065e9
+			defaultHierarchy: LocalDateTable_c3e108b0-e12a-4239-b62c-a892445a38a0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column days_missed
+		dataType: int64
+		formatString: 0
+		lineageTag: f9d84a67-7dc4-4aeb-9619-591218933f4b
+		summarizeBy: sum
+		sourceColumn: days_missed
+
+		annotation SummarizationSetBy = Automatic
+
+	column games_missed
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f34cfe2-7640-4250-9f92-ebf19f564c1b
+		summarizeBy: sum
+		sourceColumn: games_missed
+
+		annotation SummarizationSetBy = Automatic
+
+	partition player_injuries = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\player_injuries.csv"),[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"player_id", Int64.Type}, {"season_name", type text}, {"injury_reason", type text}, {"from_date", type date}, {"end_date", type date}, {"days_missed", Int64.Type}, {"games_missed", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

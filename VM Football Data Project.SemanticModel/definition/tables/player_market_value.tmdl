@@ -1,0 +1,108 @@
+table player_market_value
+	lineageTag: 49441c70-42f9-442d-9a34-9247c6b24328
+
+	measure 'Current Market Value' =
+			
+			CALCULATE(
+			    MAX('player_market_value'[value]),
+			    LASTDATE('player_market_value'[date_unix])
+			)
+		formatString: 0
+		lineageTag: d3f43c4d-73ef-4490-aa20-b6c92c908fcf
+
+	measure 'Market Value Previous Season' =
+			
+			VAR CurrentSeason =
+			    MAX('DateTable'[Season])
+			
+			VAR StartYear =
+			    VALUE(LEFT(CurrentSeason,2))
+			
+			VAR PreviousSeason =
+			    FORMAT(StartYear - 1,"00")
+			    & "/"
+			    & FORMAT(StartYear,"00")
+			
+			RETURN
+			CALCULATE(
+			    [Current Market Value],
+			    FILTER(
+			        ALL('DateTable'),
+			        'DateTable'[Season] = PreviousSeason
+			    )
+			)
+		formatString: 0
+		lineageTag: 412fd820-165e-4c20-ba9b-0896b019bf80
+
+	measure 'Market Value Growth %' =
+			
+			DIVIDE(
+			    [Current Market Value] - [Market Value Previous Season],
+			    [Market Value Previous Season]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a35fc37e-56ba-44c6-b99d-31b36b98f9ee
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6fcf8cdd-feee-4040-84c1-3ab1dbf5ce22
+		summarizeBy: sum
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_unix
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b8282e16-63a4-4384-b706-e772cfb9bcda
+		summarizeBy: none
+		sourceColumn: date_unix
+
+		variation Variation
+			isDefault
+			relationship: 6d1bf859-553e-48a7-b8eb-5108b86a17b4
+			defaultHierarchy: LocalDateTable_c4e2f3f8-10cf-427b-91e8-d24e9d3734ab.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column value
+		dataType: int64
+		formatString: 0
+		lineageTag: 6266fc20-0178-438f-99e8-f8c5c0c13c40
+		summarizeBy: sum
+		sourceColumn: value
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		dataType: string
+		lineageTag: 9fbab9d3-3e54-4c46-9679-dc13609993ed
+		summarizeBy: none
+		sourceColumn: Season
+
+		annotation SummarizationSetBy = Automatic
+
+	partition player_market_value = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\player_market_value.csv"),[Delimiter=",", Columns=3, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"player_id", Int64.Type}, {"date_unix", type date}, {"value", Int64.Type}}),
+				    #"Added Custom" = Table.AddColumn(#"Changed Type", "Season", each let
+				    SeasonStart = if Date.Month([date_unix]) >= 7
+				                  then Date.Year([date_unix])
+				                  else Date.Year([date_unix]) - 1
+				in
+				    Text.End(Text.From(SeasonStart), 2) & "/" &
+				    Text.End(Text.From(SeasonStart + 1), 2))
+				in
+				    #"Added Custom"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

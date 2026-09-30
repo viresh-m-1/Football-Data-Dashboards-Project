@@ -1,0 +1,172 @@
+{
+  "config": "{\"version\":\"5.59\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU10\",\"version\":\"5.62\",\"type\":2}},\"activeSectionIndex\":2,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true,\"useEnhancedTooltips\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "336528be308b5d1475a7",
+      "config": "{}",
+      "name": "f774ab5061c8282eb380"
+    }
+  ],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY24SU10",
+            "path": "BaseThemes/CY24SU10.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{\"relationships\":[{\"source\":\"01ab2d598d80128e93de\",\"target\":\"646f4955e59da897043b\",\"type\":1},{\"source\":\"646f4955e59da897043b\",\"target\":\"01ab2d598d80128e93de\",\"type\":3}],\"objects\":{\"outspacePane\":[{\"properties\":{\"width\":{\"expr\":{\"Literal\":{\"Value\":\"183L\"}}}}}]}}",
+      "displayName": "Player_Performances",
+      "displayOption": 1,
+      "filters": "[{\"name\":\"7079dd67a77980a093ac\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"player_performances\"}},\"Property\":\"competition_name\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}]",
+      "height": 720.00,
+      "name": "336528be308b5d1475a7",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"01ab2d598d80128e93de\",\"layouts\":[{\"id\":0,\"position\":{\"x\":4.207066557107642,\"y\":0,\"z\":0,\"width\":636.3188167625308,\"height\":337.6170912078882,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"Sum(player_performances.goals)\"},{\"queryRef\":\"Sum(player_performances.own_goals)\"}],\"Category\":[{\"queryRef\":\"player_profiles.main_position\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_performances\",\"Type\":0},{\"Name\":\"p1\",\"Entity\":\"player_profiles\",\"Type\":0}],\"Select\":[{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"goals\"}},\"Function\":0},\"Name\":\"Sum(player_performances.goals)\",\"NativeReferenceName\":\"Goals\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"own_goals\"}},\"Function\":0},\"Name\":\"Sum(player_performances.own_goals)\",\"NativeReferenceName\":\"Own Goals\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p1\"}},\"Property\":\"main_position\"},\"Name\":\"player_profiles.main_position\",\"NativeReferenceName\":\"Position\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"goals\"}},\"Function\":0}}}]},\"columnProperties\":{\"Sum(player_performances.goals)\":{\"displayName\":\"Goals\"},\"Sum(player_performances.own_goals)\":{\"displayName\":\"Own Goals\"},\"player_profiles.main_position\":{\"displayName\":\"Position\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Goals by Position'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"c7499288be0e60654203\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"player_performances\"}},\"Property\":\"competition_name\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}},{\"name\":\"c5edf86566b04021eb61\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"player_performances\"}},\"Property\":\"season_name\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}},{\"name\":\"01ab1a3063b1e8a6e3cc\",\"expression\":{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"player_performances\"}},\"Property\":\"own_goals\"}},\"Function\":0}},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":true},{\"name\":\"cd4456773b64c706e201\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"player_profiles\"}},\"Property\":\"main_position\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_profiles\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"main_position\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"null\"}}],[{\"Literal\":{\"Value\":\"''\"}}]]}}}}}]},\"type\":\"Categorical\",\"howCreated\":0,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"isHiddenInViewMode\":false}]",
+          "height": 337.62,
+          "width": 636.32,
+          "x": 4.21,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"185cf26c7a231499186c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":4.207066557107642,\"y\":359.7041906327034,\"z\":3000,\"width\":889.7945768282663,\"height\":342.8759244042728,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"lineStackedColumnComboChart\",\"projections\":{\"Category\":[{\"queryRef\":\"player_performances.season_name\",\"active\":true}],\"Y\":[{\"queryRef\":\"player_performances.G&A Difference\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_performances\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"season_name\"},\"Name\":\"player_performances.season_name\",\"NativeReferenceName\":\"season_name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"G&A Difference\"},\"Name\":\"player_performances.G&A Difference\",\"NativeReferenceName\":\"G&A Difference\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"season_name\"}}}]},\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Season on season change in goal + assist contributions'\"}}}}}]}}}",
+          "filters": "[{\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"player_performances\"}},\"Property\":\"season_name\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_performances\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Not\":{\"Expression\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"season_name\"}},\"Right\":{\"Literal\":{\"Value\":\"'25/26'\"}}}}}}}]},\"type\":\"Advanced\",\"howCreated\":0,\"isHiddenInViewMode\":false}]",
+          "height": 342.88,
+          "width": 889.79,
+          "x": 4.21,
+          "y": 359.70,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"646f4955e59da897043b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":721.1402850712677,\"y\":0,\"z\":4000,\"width\":208.3720930232558,\"height\":67.21680420105025,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"player_profiles.player_name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_profiles\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"player_name\"},\"Name\":\"player_profiles.player_name\",\"NativeReferenceName\":\"player_name\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Dropdown'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"1D\"}}},\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 67.22,
+          "width": 208.37,
+          "x": 721.14,
+          "y": 0.00,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"66f1ef0692a9d8ade806\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1063.945986496624,\"y\":0,\"z\":1000,\"width\":216.0540135033758,\"height\":159.3998499624906,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"player_performances.Competition_name_ID\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_performances\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Competition_name_ID\"},\"Name\":\"player_performances.Competition_name_ID\",\"NativeReferenceName\":\"Competition_name_ID\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"selfFilter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_performances\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Contains\":{\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Competition_name_ID\"}},\"Right\":{\"Literal\":{\"Value\":\"'GB1'\"}}}},\"Annotations\":{\"PowerBI.MParameterBehavior\":1}}]}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_performances\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Competition_name_ID\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Premier League (GB1)'\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 159.40,
+          "width": 216.05,
+          "x": 1063.95,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"ecef6449547a73805136\",\"layouts\":[{\"id\":0,\"position\":{\"x\":929.5123780945236,\"y\":0,\"z\":2000,\"width\":134.4336084021005,\"height\":159.3998499624906,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"player_performances.season_name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_performances\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"season_name\"},\"Name\":\"player_performances.season_name\",\"NativeReferenceName\":\"season_name\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 159.40,
+          "width": 134.43,
+          "x": 929.51,
+          "y": 0.00,
+          "z": 2000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Comparison_of_change_in_MV_vs_G/A",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "50ae57c5e50bc0d20e56",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"1bf5042f0a8e3d09856b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1144.5333333333333,\"y\":9.6,\"z\":1000,\"width\":121.6,\"height\":181.33333333333334,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"PlayerSeasonScatter.Season\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"PlayerSeasonScatter\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"Season\"},\"Name\":\"PlayerSeasonScatter.Season\",\"NativeReferenceName\":\"Season\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 181.33,
+          "width": 121.60,
+          "x": 1144.53,
+          "y": 9.60,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"39f78b7b069d91c00c69\",\"layouts\":[{\"id\":0,\"position\":{\"x\":35.2,\"y\":24.533333333333335,\"z\":0,\"width\":1058.1333333333334,\"height\":673.0666666666667,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"scatterChart\",\"projections\":{\"Series\":[{\"queryRef\":\"PlayerSeasonScatter.player_id\"}],\"Y\":[{\"queryRef\":\"Sum(PlayerSeasonScatter.PerformancePctChange_Log)\"}],\"X\":[{\"queryRef\":\"Sum(PlayerSeasonScatter.PerformancePctChange_Log_N)\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"PlayerSeasonScatter\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"player_id\"},\"Name\":\"PlayerSeasonScatter.player_id\",\"NativeReferenceName\":\"player_id\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"MarketValuePctChange_Log_N\"},\"Name\":\"Sum(PlayerSeasonScatter.PerformancePctChange_Log)\",\"NativeReferenceName\":\"MarketValuePctChange_Log_N\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"PerformancePctChange_Log_N\"},\"Name\":\"Sum(PlayerSeasonScatter.PerformancePctChange_Log_N)\",\"NativeReferenceName\":\"PerformancePctChange_Log_N1\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{},\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'A comparison of % change in market value vs % change in G/A'\"}}}}}]}}}",
+          "filters": "[{\"name\":\"815f337d1203d443292d\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"PlayerSeasonScatter\"}},\"Property\":\"Season\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{}}]",
+          "height": 673.07,
+          "width": 1058.13,
+          "x": 35.20,
+          "y": 24.53,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{\"relationships\":[{\"source\":\"3955e93006d36856d150\",\"target\":\"e8554feb64852a005138\",\"type\":3}],\"filterSortOrder\":3}",
+      "displayName": "Team_Transfers_And_Market_Value",
+      "displayOption": 1,
+      "filters": "[{\"name\":\"05d314c4a750456b1aec\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"player_performances\"}},\"Property\":\"season_name\"}},\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"player_performances\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"season_name\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'00/01'\"}}]]}}}]},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{},\"ordinal\":0},{\"name\":\"54b9291f044d49312ab6\",\"expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"player_performances\"}},\"Property\":\"competition_name\"}},\"type\":\"Categorical\",\"howCreated\":1,\"objects\":{\"general\":[{\"properties\":{\"isInvertedSelectionMode\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]},\"ordinal\":1}]",
+      "height": 720.00,
+      "name": "da0aa7ed46a4a0e27ead",
+      "ordinal": 2,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"194e1728e0d3ed9962ea\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1091.2,\"y\":403.2,\"z\":3000,\"width\":188.8,\"height\":150.4,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"ClubTransfers.Club\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"ClubTransfers\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Club\"},\"Name\":\"ClubTransfers.Club\",\"NativeReferenceName\":\"Club\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"selfFilter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"ClubTransfers\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Contains\":{\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Club\"}},\"Right\":{\"Literal\":{\"Value\":\"'Chelsea'\"}}}},\"Annotations\":{\"PowerBI.MParameterBehavior\":1}}]}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"ClubTransfers\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Club\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Chelsea'\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 150.40,
+          "width": 188.80,
+          "x": 1091.20,
+          "y": 403.20,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"1c350ff9ec2489e30e2e\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":29.866666666666667,\"z\":0,\"width\":1008,\"height\":291.2,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"transfer_history.season_name\",\"active\":true}],\"Y\":[{\"queryRef\":\"Sum(transfer_history.Transfer_Value_Difference)\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"transfer_history\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"season_name\"},\"Name\":\"transfer_history.season_name\",\"NativeReferenceName\":\"season_name\"},{\"Aggregation\":{\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"Transfer_Value_Difference\"}},\"Function\":0},\"Name\":\"Sum(transfer_history.Transfer_Value_Difference)\",\"NativeReferenceName\":\"Transfer value difference\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"season_name\"}}}]},\"columnProperties\":{\"Sum(transfer_history.Transfer_Value_Difference)\":{\"displayName\":\"Transfer value difference\"}},\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Difference between transfer fee and market value'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 291.20,
+          "width": 1008.00,
+          "x": 0.00,
+          "y": 29.87,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"3955e93006d36856d150\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1116.8,\"y\":139.73333333333332,\"z\":4000,\"width\":163.2,\"height\":158.93333333333334,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"transfer_history.from_team_name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"transfer_history\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"from_team_name\"},\"Name\":\"transfer_history.from_team_name\",\"NativeReferenceName\":\"from_team_name\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"selfFilterEnabled\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"selfFilter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"transfer_history\",\"Type\":0}],\"Where\":[{\"Condition\":{\"Contains\":{\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"from_team_name\"}},\"Right\":{\"Literal\":{\"Value\":\"'chelsea'\"}}}},\"Annotations\":{\"PowerBI.MParameterBehavior\":1}}]}},\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"transfer_history\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"from_team_name\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"'Chelsea'\"}}]]}}}]}}}}]}}}",
+          "filters": "[]",
+          "height": 158.93,
+          "width": 163.20,
+          "x": 1116.80,
+          "y": 139.73,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"64aea9d030e2eeb0cce9\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1116.8,\"y\":0,\"z\":1000,\"width\":163.2,\"height\":147.2,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"transfer_history.season_name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"t\",\"Entity\":\"transfer_history\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"season_name\"},\"Name\":\"transfer_history.season_name\",\"NativeReferenceName\":\"season_name\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{}}]}}}",
+          "filters": "[]",
+          "height": 147.20,
+          "width": 163.20,
+          "x": 1116.80,
+          "y": 0.00,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"e8554feb64852a005138\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":374.4,\"z\":2000,\"width\":969.6,\"height\":300.8,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"clusteredColumnChart\",\"projections\":{\"Y\":[{\"queryRef\":\"ClubTransfers.Net_Transfers\"}],\"Category\":[{\"queryRef\":\"transfer_history.season_name\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"ClubTransfers\",\"Type\":0},{\"Name\":\"t\",\"Entity\":\"transfer_history\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Net_Transfers\"},\"Name\":\"ClubTransfers.Net_Transfers\",\"NativeReferenceName\":\"Net_Transfers\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"season_name\"},\"Name\":\"transfer_history.season_name\",\"NativeReferenceName\":\"season_name\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"t\"}},\"Property\":\"season_name\"}}}]},\"drillFilterOtherVisuals\":true,\"vcObjects\":{\"title\":[{\"properties\":{\"text\":{\"expr\":{\"Literal\":{\"Value\":\"'Net Transfers by season'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 300.80,
+          "width": 969.60,
+          "x": 0.00,
+          "y": 374.40,
+          "z": 2000.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

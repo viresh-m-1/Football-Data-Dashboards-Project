@@ -1,0 +1,59 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup 'Transform File from football (2)'
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup 'Transform File from football (2)\Helper Queries'
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["Sample File","StartDate","Transform Sample File","Transform File","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_player_injuries csv","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_player_latest_market_value","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_player_market_value csv","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_player_national_performanc","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_player_performances csv","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_player_profiles csv","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_player_teammates_played_wi","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_team_children csv","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_team_competitions_seasons","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_team_details csv","C:\\Users\\JIGNESHHHHH\\Documents\\SQL\\Datasets\\football\\_transfer_history csv","player_injuries","player_latest_market_value","player_market_value","player_national_performances","player_performances","player_profiles","player_teammates_played_with","team_children","team_competitions_seasons","team_details","transfer_history","EndDate","DateTable"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1558.0 (25.03)+75b5f06a991f8f8a8a4d6b6fcd0f66e1ec2d6fdc
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table player_injuries
+ref table DateTableTemplate_02d983ff-4e15-4174-a95f-7154def5f7f9
+ref table LocalDateTable_752e3e9d-0aec-4023-8553-4ecd047c1722
+ref table LocalDateTable_c3e108b0-e12a-4239-b62c-a892445a38a0
+ref table player_latest_market_value
+ref table LocalDateTable_c7ac97a8-6cac-4acb-82d6-bfe0f6d26860
+ref table player_market_value
+ref table LocalDateTable_c4e2f3f8-10cf-427b-91e8-d24e9d3734ab
+ref table player_national_performances
+ref table player_performances
+ref table player_profiles
+ref table LocalDateTable_b2466372-f244-433a-88fc-fcacb5c9b22c
+ref table LocalDateTable_61588105-09ef-4e0e-a549-394c8b4857c9
+ref table LocalDateTable_771a062e-1326-4a33-8ed2-10352af191d1
+ref table LocalDateTable_10a4d0f6-84f7-4b3c-b645-c7ce78954324
+ref table LocalDateTable_96abd42a-4a6b-4056-849f-bda22c188365
+ref table player_teammates_played_with
+ref table team_children
+ref table LocalDateTable_0500c387-aa17-4c82-8558-a0511868c8ca
+ref table team_competitions_seasons
+ref table LocalDateTable_632b9eb2-a17c-404d-9673-caed27e94d53
+ref table team_details
+ref table LocalDateTable_b4decf4c-326d-467e-a5f4-fc6228ab966f
+ref table transfer_history
+ref table LocalDateTable_f552a950-a66d-464e-8415-7bdce5886ea1
+ref table DateTable
+ref table SeasonEndMarketValue
+ref table LocalDateTable_fdaf1d0b-9c1c-40c7-a99b-e8c248a47ab2
+ref table SeasonPerformance
+ref table PlayerSeasonScatter
+ref table LocalDateTable_78c58082-b601-439b-9471-b1e51390ecd7
+ref table ClubTransfers
+
+ref cultureInfo en-US
+

@@ -1,0 +1,119 @@
+table team_details
+	lineageTag: fc0b41b1-ce4c-4c74-b511-4eadd746ff0a
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 08b9e322-d91f-46c5-8c0b-ce4b0a99265e
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_slug
+		dataType: string
+		lineageTag: 6932ee15-9428-439e-be5f-86a9b43f193c
+		summarizeBy: none
+		sourceColumn: club_slug
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_name
+		dataType: string
+		lineageTag: 75c89b9a-49b7-45e6-8f3b-495083afbc82
+		summarizeBy: none
+		sourceColumn: club_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column logo_url
+		dataType: string
+		lineageTag: 65d4b11f-fb8f-4426-863f-dbdb28fe13d7
+		summarizeBy: none
+		sourceColumn: logo_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column country_name
+		dataType: string
+		lineageTag: 9739f3bd-cc48-436e-aa43-5df160eed9c6
+		summarizeBy: none
+		sourceColumn: country_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f6d301b0-4c97-4834-8e84-90a41cf87674
+		summarizeBy: sum
+		sourceColumn: season_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		lineageTag: 6a82974e-5515-42dd-a554-0cd828f59ace
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_slug
+		dataType: string
+		lineageTag: 7e4c95e3-9c8a-4d21-9f34-905efe7e9abf
+		summarizeBy: none
+		sourceColumn: competition_slug
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		lineageTag: cb73cd78-c5f2-4aad-a853-67316a25d68b
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_division
+		dataType: string
+		lineageTag: b62a0c2d-8836-4e2e-b7be-ed48ee1d4c43
+		summarizeBy: none
+		sourceColumn: club_division
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_url
+		dataType: string
+		lineageTag: c06b4310-7db7-4c07-9dcb-d9a5d08b4765
+		summarizeBy: none
+		sourceColumn: source_url
+
+		annotation SummarizationSetBy = Automatic
+
+	column _last_modified_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 297db425-3136-425c-954e-88388d95493d
+		summarizeBy: none
+		sourceColumn: _last_modified_at
+
+		variation Variation
+			isDefault
+			relationship: 30e0d691-284c-45e7-b7f0-584651ba52b4
+			defaultHierarchy: LocalDateTable_b4decf4c-326d-467e-a5f4-fc6228ab966f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition team_details = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\team_details.csv"),[Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"club_id", Int64.Type}, {"club_slug", type text}, {"club_name", type text}, {"logo_url", type text}, {"country_name", type text}, {"season_id", Int64.Type}, {"competition_id", type text}, {"competition_slug", type text}, {"competition_name", type text}, {"club_division", type text}, {"source_url", type text}, {"_last_modified_at", type datetime}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

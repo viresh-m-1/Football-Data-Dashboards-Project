@@ -1,0 +1,73 @@
+table ClubTransfers
+	lineageTag: fba35894-23da-4694-b400-27bdd695783a
+
+	measure Transfer_Count =
+			
+			VAR Club = SELECTEDVALUE('ClubTransfers'[Club])
+			VAR TransferType = SELECTEDVALUE('ClubTransfers'[Type])
+			RETURN
+			    CALCULATE(
+			        COUNTROWS('transfer_history'),
+			        'transfer_history'[transfer_type] = "transfer",
+			        IF(
+			            TransferType = "In",
+			            'transfer_history'[to_team_name] = Club,
+			            'transfer_history'[from_team_name] = Club
+			        )
+			    )
+		formatString: 0
+		lineageTag: 56534052-3cfa-4975-9391-e7edf947e891
+
+	measure Net_Transfers =
+			
+			VAR Club = SELECTEDVALUE('ClubTransfers'[Club])
+			VAR TransfersOut = CALCULATE(
+			    COUNTROWS('transfer_history'),
+			    'transfer_history'[transfer_type] = "transfer",
+			    'transfer_history'[from_team_name] = Club
+			    )
+			VAR TransfersIn = CALCULATE(
+			    COUNTROWS('transfer_history'),
+			    'transfer_history'[transfer_type] = "transfer",
+			    'transfer_history'[to_team_name] = Club
+			    )
+			RETURN
+			    TransfersIn - TransfersOut
+		formatString: 0
+		lineageTag: 0349ad42-4a58-441f-a11b-439437893232
+
+	column Club
+		lineageTag: fbc69700-40ca-4fe8-bbd1-304563636680
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Club]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		lineageTag: f66d0e20-0a58-4309-8306-63389f49b97e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ClubTransfers = calculated
+		mode: import
+		source =
+				
+				UNION(
+				    SELECTCOLUMNS(
+				        DISTINCT('transfer_history'[from_team_name]),
+				        "Club", 'transfer_history'[from_team_name],
+				        "Type", "Out"
+				    ),
+				    SELECTCOLUMNS(
+				        DISTINCT('transfer_history'[to_team_name]),
+				        "Club", 'transfer_history'[to_team_name],
+				        "Type", "In"
+				    )
+				)
+
+	annotation PBI_Id = 36f966bc61394b99a324cb6dbc23f4dc
+

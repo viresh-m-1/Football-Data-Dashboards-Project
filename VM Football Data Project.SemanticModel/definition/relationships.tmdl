@@ -1,0 +1,120 @@
+relationship 7fe42caa-c961-4101-bab0-661ccdab79ed
+	joinOnDateBehavior: datePartOnly
+	fromColumn: player_injuries.from_date
+	toColumn: LocalDateTable_752e3e9d-0aec-4023-8553-4ecd047c1722.Date
+
+relationship ce0c07bb-36ba-4785-b466-2a9d8c3065e9
+	joinOnDateBehavior: datePartOnly
+	fromColumn: player_injuries.end_date
+	toColumn: LocalDateTable_c3e108b0-e12a-4239-b62c-a892445a38a0.Date
+
+relationship b1fc5ad7-a9f2-4bb7-999e-24ba5ab21e2a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: player_latest_market_value.date_unix
+	toColumn: LocalDateTable_c7ac97a8-6cac-4acb-82d6-bfe0f6d26860.Date
+
+relationship 6d1bf859-553e-48a7-b8eb-5108b86a17b4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: player_market_value.date_unix
+	toColumn: LocalDateTable_c4e2f3f8-10cf-427b-91e8-d24e9d3734ab.Date
+
+relationship a0ae8807-0f33-4bf7-9eaa-8e24679a9468
+	joinOnDateBehavior: datePartOnly
+	fromColumn: player_profiles.date_of_birth
+	toColumn: LocalDateTable_b2466372-f244-433a-88fc-fcacb5c9b22c.Date
+
+relationship 1e2f53f9-9289-41ac-9dcd-eec73bb3f4af
+	joinOnDateBehavior: datePartOnly
+	fromColumn: player_profiles.joined
+	toColumn: LocalDateTable_61588105-09ef-4e0e-a549-394c8b4857c9.Date
+
+relationship 38ddb232-0942-4622-8d74-06568e6ec12c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: player_profiles.contract_expires
+	toColumn: LocalDateTable_771a062e-1326-4a33-8ed2-10352af191d1.Date
+
+relationship d326038f-3670-407c-807b-3ec100b480d7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: player_profiles.date_of_last_contract_extension
+	toColumn: LocalDateTable_10a4d0f6-84f7-4b3c-b645-c7ce78954324.Date
+
+relationship 3a4114ab-0004-4f42-b7a4-786ca18ddb55
+	joinOnDateBehavior: datePartOnly
+	fromColumn: player_profiles.contract_there_expires
+	toColumn: LocalDateTable_96abd42a-4a6b-4056-849f-bda22c188365.Date
+
+relationship AutoDetected_90138e8e-b59c-4975-98c8-f4b93fed4c80
+	fromColumn: player_injuries.player_id
+	toColumn: player_profiles.player_id
+
+relationship AutoDetected_0d30c838-6e40-4cf5-b782-3c5983776cf9
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: player_latest_market_value.player_id
+	toColumn: player_profiles.player_id
+
+relationship AutoDetected_387fe2f2-f47d-42c3-8639-5f2a5a8a79ab
+	isActive: false
+	fromColumn: player_market_value.player_id
+	toColumn: player_profiles.player_id
+
+relationship AutoDetected_9f8b110f-ef3e-4834-80f1-12ee6ecc5143
+	isActive: false
+	fromColumn: player_national_performances.player_id
+	toColumn: player_profiles.player_id
+
+relationship AutoDetected_d242dc96-f1bb-4309-9e28-91b243384916
+	fromColumn: player_teammates_played_with.player_id
+	toColumn: player_profiles.player_id
+
+relationship 5b4f6a85-59ad-4fd0-8a20-8141253d63a8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: team_children._last_modified_at
+	toColumn: LocalDateTable_0500c387-aa17-4c82-8558-a0511868c8ca.Date
+
+relationship 2b704d77-80c2-4930-8d6b-17ead8c88c5a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: team_competitions_seasons._last_modified_at
+	toColumn: LocalDateTable_632b9eb2-a17c-404d-9673-caed27e94d53.Date
+
+relationship 30e0d691-284c-45e7-b7f0-584651ba52b4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: team_details._last_modified_at
+	toColumn: LocalDateTable_b4decf4c-326d-467e-a5f4-fc6228ab966f.Date
+
+relationship AutoDetected_9fa5b712-da57-488c-aab4-20d2e8adba0d
+	fromColumn: team_competitions_seasons.club_id
+	toColumn: team_details.club_id
+
+relationship 3476898f-a145-4025-ba15-5bd8d38e5add
+	joinOnDateBehavior: datePartOnly
+	fromColumn: transfer_history.transfer_date
+	toColumn: LocalDateTable_f552a950-a66d-464e-8415-7bdce5886ea1.Date
+
+relationship AutoDetected_86e9a41a-5c4d-49a0-a86a-b81f9faa9d52
+	fromColumn: transfer_history.player_id
+	toColumn: player_profiles.player_id
+
+relationship f5cbc0c2-d346-7637-9060-24c5577a5797
+	crossFilteringBehavior: bothDirections
+	fromColumn: player_profiles.current_club_id
+	toColumn: team_details.club_id
+
+relationship acf6a882-2cd9-6308-1c47-21fa77fce1be
+	fromColumn: team_children.parent_team_id
+	toColumn: team_details.club_id
+
+relationship b3b611d0-e8d8-e633-58f6-20f09ee88f8f
+	fromColumn: player_performances.player_id
+	toColumn: player_profiles.player_id
+
+relationship 8004aa6b-1954-469c-b395-fd1eb2682d74
+	joinOnDateBehavior: datePartOnly
+	fromColumn: SeasonEndMarketValue.Last_Date
+	toColumn: LocalDateTable_fdaf1d0b-9c1c-40c7-a99b-e8c248a47ab2.Date
+
+relationship 8d1e9391-8926-4732-adef-2d92e9798841
+	joinOnDateBehavior: datePartOnly
+	fromColumn: PlayerSeasonScatter.Last_Date
+	toColumn: LocalDateTable_78c58082-b601-439b-9471-b1e51390ecd7.Date
+

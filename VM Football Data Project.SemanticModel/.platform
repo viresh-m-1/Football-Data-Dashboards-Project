@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "VM Football Data Project"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "7621f763-9352-462b-8c28-879558f4d10d"
+  }
+}

@@ -1,0 +1,72 @@
+table SeasonEndMarketValue
+	lineageTag: 0a6e7b29-c0d3-472b-aaa3-2a17e427d055
+
+	column player_id
+		formatString: 0
+		lineageTag: 2333c90a-782d-4ed5-b38a-6f187069b14b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: player_market_value[player_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		lineageTag: 236c6a40-70fb-4660-8167-b0b1c57eff1d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: player_market_value[Season]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Date
+		formatString: General Date
+		lineageTag: cbd105c7-1f50-482d-a60c-7b75df495bf7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Last_Date]
+
+		variation Variation
+			isDefault
+			relationship: 8004aa6b-1954-469c-b395-fd1eb2682d74
+			defaultHierarchy: LocalDateTable_fdaf1d0b-9c1c-40c7-a99b-e8c248a47ab2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Value
+		formatString: 0
+		lineageTag: bbac9098-77e7-47a8-8458-b3b098710410
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Last_Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition SeasonEndMarketValue = calculated
+		mode: import
+		source =
+				
+				SUMMARIZE(
+				    'player_market_value',
+				    'player_market_value'[player_id],
+				    'player_market_value'[season],
+				    "Last_Date", MAX('player_market_value'[date_unix]),
+				    "Last_Value", CALCULATE(
+				        MAX('player_market_value'[value]),
+				        FILTER(
+				            ALL('player_market_value'),
+				            'player_market_value'[player_id] = EARLIER('player_market_value'[player_id])
+				            && 'player_market_value'[season] = EARLIER('player_market_value'[season])
+				            && 'player_market_value'[date_unix] = MAXX(
+				                FILTER(
+				                    ALL('player_market_value'),
+				                    'player_market_value'[player_id] = EARLIER('player_market_value'[player_id])
+				                    && 'player_market_value'[season] = EARLIER('player_market_value'[season])
+				                ),
+				                'player_market_value'[date_unix]
+				            )
+				        )
+				    )
+				)
+
+	annotation PBI_Id = d6e7ad99509343819d7f89ccd2253815
+

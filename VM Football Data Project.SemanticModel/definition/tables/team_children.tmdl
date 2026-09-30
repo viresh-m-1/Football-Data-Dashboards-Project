@@ -1,0 +1,63 @@
+table team_children
+	lineageTag: babfc6bb-ae15-4b0b-994a-ff36a997199f
+
+	column parent_team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 910715b7-d1b6-4fd6-a67d-c0019a0af52d
+		summarizeBy: none
+		sourceColumn: parent_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column parent_team_name
+		dataType: string
+		lineageTag: fc4c0ef6-ec13-4762-9ea6-70d605f627df
+		summarizeBy: none
+		sourceColumn: parent_team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column child_team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: dcca48e8-b044-4424-aada-aee0606aaf6d
+		summarizeBy: sum
+		sourceColumn: child_team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column child_team_name
+		dataType: string
+		lineageTag: ae7aec03-63f4-4c8d-841f-77c3e09f3d9a
+		summarizeBy: none
+		sourceColumn: child_team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column _last_modified_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 95e840c4-8f35-407e-8def-b5c908a22ec6
+		summarizeBy: none
+		sourceColumn: _last_modified_at
+
+		variation Variation
+			isDefault
+			relationship: 5b4f6a85-59ad-4fd0-8a20-8141253d63a8
+			defaultHierarchy: LocalDateTable_0500c387-aa17-4c82-8558-a0511868c8ca.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition team_children = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\team_children.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"parent_team_id", Int64.Type}, {"parent_team_name", type text}, {"child_team_id", Int64.Type}, {"child_team_name", type text}, {"_last_modified_at", type datetime}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

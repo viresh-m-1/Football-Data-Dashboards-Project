@@ -1,0 +1,240 @@
+table player_performances
+	lineageTag: a942366e-859e-41ba-9ef7-ad225e338394
+
+	measure GoalsAssists =
+			
+			SUM('player_performances'[Goals]) +
+			SUM('player_performances'[Assists])
+		formatString: 0
+		lineageTag: 0bf285bf-22f7-48a2-a22f-d64c020c248d
+
+	measure G&APrevSeason =
+			
+			VAR CurrentSeason =
+			    MAX('player_performances'[season_name])
+			
+			VAR StartYear =
+			    VALUE(LEFT(CurrentSeason, 2))
+			
+			VAR PrevSeason =
+			    FORMAT(StartYear - 1, "00")
+			    & "/"
+			    & FORMAT(StartYear, "00")
+			
+			RETURN
+			CALCULATE(
+			    [GoalsAssists],
+			    'player_performances'[season_name] = PrevSeason
+			)
+		formatString: 0
+		lineageTag: 3f5b74d9-76a7-4cf5-b7a9-e58d380e8b56
+
+	measure 'G&A Difference' =
+			
+			[GoalsAssists] - [G&APrevSeason]
+		formatString: 0
+		lineageTag: 4bce2aea-aa91-47bc-ac30-4975005f1d74
+
+	measure 'G&A Change %' =
+			
+			DIVIDE(
+			    [GoalsAssists] - [G&APrevSeason],
+			    [G&APrevSeason]
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 47cb6440-537a-48f2-ae49-48c54a5a2745
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d648991e-5fa6-424a-8cbc-9bf676e4efce
+		summarizeBy: none
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_name
+		dataType: string
+		lineageTag: 1db00a2f-f45a-4fa6-bfe6-cc7f3a84fb7d
+		summarizeBy: none
+		sourceColumn: season_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		lineageTag: 85ae3f9c-6467-4be1-8c11-972cce48e922
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		lineageTag: 55c5574c-ba78-4241-a36c-1cb14d1d2c2d
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c9251054-d14e-4e0a-9ab6-84a7fca04989
+		summarizeBy: sum
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_name
+		dataType: string
+		lineageTag: 6a4c4c80-fcb9-4ddd-bf07-d4b1df2f9727
+		summarizeBy: none
+		sourceColumn: team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_in_group
+		dataType: int64
+		formatString: 0
+		lineageTag: d44104de-7754-4491-ba61-cf8b2287a1ce
+		summarizeBy: sum
+		sourceColumn: nb_in_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column nb_on_pitch
+		dataType: int64
+		formatString: 0
+		lineageTag: fc271118-db31-4be3-84dc-b51908447b91
+		summarizeBy: sum
+		sourceColumn: nb_on_pitch
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals
+		dataType: int64
+		formatString: 0
+		lineageTag: 54502c31-2128-4e0d-8cb2-01ea8cb60fc7
+		summarizeBy: sum
+		sourceColumn: goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column assists
+		dataType: int64
+		formatString: 0
+		lineageTag: 9e858548-73f7-419c-aa9d-6ccb0a0f2a49
+		summarizeBy: sum
+		sourceColumn: assists
+
+		annotation SummarizationSetBy = Automatic
+
+	column own_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: 0abb4e73-6e2a-4c54-b080-5fc2639d50fc
+		summarizeBy: sum
+		sourceColumn: own_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column subed_in
+		dataType: int64
+		formatString: 0
+		lineageTag: 64d75478-1bf7-4437-8c8c-2e3f05559146
+		summarizeBy: sum
+		sourceColumn: subed_in
+
+		annotation SummarizationSetBy = Automatic
+
+	column subed_out
+		dataType: int64
+		formatString: 0
+		lineageTag: c974af65-3bae-45d9-984e-5bf8490f4d68
+		summarizeBy: sum
+		sourceColumn: subed_out
+
+		annotation SummarizationSetBy = Automatic
+
+	column yellow_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: c4da69ed-381a-4a08-b3cc-ddd32b0230ee
+		summarizeBy: sum
+		sourceColumn: yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column second_yellow_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: f13e15b4-29c5-4511-ba76-541e869b5dc8
+		summarizeBy: sum
+		sourceColumn: second_yellow_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column direct_red_cards
+		dataType: int64
+		formatString: 0
+		lineageTag: fb54f2d8-ffea-4bdc-8918-65216a9149d5
+		summarizeBy: sum
+		sourceColumn: direct_red_cards
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalty_goals
+		dataType: int64
+		formatString: 0
+		lineageTag: bd3010e0-049d-4adb-9054-a5221d49583f
+		summarizeBy: sum
+		sourceColumn: penalty_goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column minutes_played
+		dataType: int64
+		formatString: 0
+		lineageTag: 59f30135-a998-4d75-833a-470cbd75cb4c
+		summarizeBy: sum
+		sourceColumn: minutes_played
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals_conceded
+		dataType: int64
+		formatString: 0
+		lineageTag: 0a1995ca-bdf4-48ba-bb54-6a9f7d813c95
+		summarizeBy: sum
+		sourceColumn: goals_conceded
+
+		annotation SummarizationSetBy = Automatic
+
+	column clean_sheets
+		dataType: int64
+		formatString: 0
+		lineageTag: 17cdceca-164c-4876-89d4-32259dc5bd5f
+		summarizeBy: sum
+		sourceColumn: clean_sheets
+
+		annotation SummarizationSetBy = Automatic
+
+	column Competition_name_ID = [competition_name]&" ("&[competition_id]&")"
+		lineageTag: ac4f1006-efc8-41ec-a109-caf72651d824
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition player_performances = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\player_performances.csv"),[Delimiter=",", Columns=20, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"player_id", Int64.Type}, {"season_name", type text}, {"competition_id", type text}, {"competition_name", type text}, {"team_id", Int64.Type}, {"team_name", type text}, {"nb_in_group", Int64.Type}, {"nb_on_pitch", Int64.Type}, {"goals", Int64.Type}, {"assists", Int64.Type}, {"own_goals", Int64.Type}, {"subed_in", Int64.Type}, {"subed_out", Int64.Type}, {"yellow_cards", Int64.Type}, {"second_yellow_cards", Int64.Type}, {"direct_red_cards", Int64.Type}, {"penalty_goals", Int64.Type}, {"minutes_played", Int64.Type}, {"goals_conceded", Int64.Type}, {"clean_sheets", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

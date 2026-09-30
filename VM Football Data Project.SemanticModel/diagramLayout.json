@@ -1,0 +1,229 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 1096.9727087089759,
+        "y": 735.09943481403559
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1730.2113418442002,
+            "y": 736.87369791666652
+          },
+          "nodeIndex": "player_injuries",
+          "nodeLineageTag": "04e66a16-cf4e-4150-bf1c-e7f17aaac76b",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 487.93700988461137,
+            "y": 1163.9943969530204
+          },
+          "nodeIndex": "player_latest_market_value",
+          "nodeLineageTag": "86220c56-8b2a-4603-8f22-e29446f6494d",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 976.40939051008036,
+            "y": 1027.1242824259966
+          },
+          "nodeIndex": "player_market_value",
+          "nodeLineageTag": "49441c70-42f9-442d-9a34-9247c6b24328",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 645.64379650252624,
+            "y": 716.17100117550331
+          },
+          "nodeIndex": "player_national_performances",
+          "nodeLineageTag": "29e70590-183f-4a42-b0f1-612830a5ff5c",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 491.34959284816779,
+            "y": 1620.7013619752934
+          },
+          "nodeIndex": "player_performances",
+          "nodeLineageTag": "a942366e-859e-41ba-9ef7-ad225e338394",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 1443.5731045580187,
+            "y": 1197.791526706937
+          },
+          "nodeIndex": "player_profiles",
+          "nodeLineageTag": "489d9443-64e7-439e-a4d3-e85627587b8d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 2074.8623340581512,
+            "y": 1557.9494916625113
+          },
+          "nodeIndex": "player_teammates_played_with",
+          "nodeLineageTag": "a4044069-2821-4b1e-889e-68ebf4756214",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 2583.6335343572241,
+            "y": 943.42761540852973
+          },
+          "nodeIndex": "team_children",
+          "nodeLineageTag": "babfc6bb-ae15-4b0b-994a-ff36a997199f",
+          "size": {
+            "height": 207.09555439009694,
+            "width": 339.01420497343361
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 2791.5345918442194,
+            "y": 554.13336116060486
+          },
+          "nodeIndex": "team_competitions_seasons",
+          "nodeLineageTag": "6b7d9cf5-b79e-4e17-a166-1d12ce0e73de",
+          "size": {
+            "height": 290.22222222222217,
+            "width": 264
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 2360.666666666667,
+            "y": 538.20703125
+          },
+          "nodeIndex": "team_details",
+          "nodeLineageTag": "fc0b41b1-ce4c-4c74-b511-4eadd746ff0a",
+          "size": {
+            "height": 315.55555555555554,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 2046.3991480759214,
+            "y": 1200.3230102158666
+          },
+          "nodeIndex": "transfer_history",
+          "nodeLineageTag": "2a4098cf-b0c7-4dfc-807c-ecd63ff06ca5",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 2640.3033560079175,
+            "y": 1225.3728471959835
+          },
+          "nodeIndex": "DateTable",
+          "nodeLineageTag": "acc45036-ec88-4c6d-a8a2-f1d35e634196",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 2514.0024878641934,
+            "y": 1461.1068010438194
+          },
+          "nodeIndex": "SeasonEndMarketValue",
+          "nodeLineageTag": "0a6e7b29-c0d3-472b-aaa3-2a17e427d055",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2914.191755465657,
+            "y": 1206.1667279266615
+          },
+          "nodeIndex": "SeasonPerformance",
+          "nodeLineageTag": "733b2cae-295e-41fd-8133-553c23085f09",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2376.3487326963141,
+            "y": 1201.9496672430878
+          },
+          "nodeIndex": "PlayerSeasonScatter",
+          "nodeLineageTag": "bc10473a-2f4e-41c9-b0a4-b7fb60ece0bc",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2710.2547455810454,
+            "y": 770.64950911264668
+          },
+          "nodeIndex": "ClubTransfers",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70.466657361944911,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

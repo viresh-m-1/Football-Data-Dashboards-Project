@@ -1,0 +1,182 @@
+expression 'Sample File' =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    Navigation1 = Source{0}[Content]
+		in
+		    Navigation1
+	lineageTag: 84313b9f-f1fc-4c1d-aae3-c9a51e9d8c0c
+	queryGroup: 'Transform File from football (2)\Helper Queries'
+
+	annotation PBI_ResultType = Binary
+
+expression StartDate = #date(1950, 1, 1) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: 4bb12d7f-4d87-4cf8-8d50-f3126606e380
+	queryGroup: 'Transform File from football (2)\Helper Queries'
+
+	annotation PBI_ResultType = Date
+
+expression 'Transform Sample File' =
+		let
+		    Source = Csv.Document(StartDate,[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+	lineageTag: 9a1b2551-5344-4a87-8e3c-40b7675c18a7
+	queryGroup: 'Transform File from football (2)'
+
+	annotation PBI_ResultType = Table
+
+expression 'Transform File' =
+		let
+		    Source = (StartDate as date) => let
+		    Source = Csv.Document(StartDate,[Delimiter=",", Columns=7, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+		    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true])
+		in
+		    #"Promoted Headers"
+		in
+		    Source
+	mAttributes: [ FunctionQueryBinding = "{""exemplarFormulaName"":""Transform Sample File""}" ]
+	lineageTag: 244cebe8-5ddc-4292-8b2b-307f454565a5
+	queryGroup: 'Transform File from football (2)\Helper Queries'
+
+	annotation PBI_ResultType = Function
+
+expression 'C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_injuries csv' =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_injuries csv1" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="player_injuries.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_injuries csv1"
+	lineageTag: 19cfc7ce-606a-40bf-afa1-71691d293eff
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_latest_market_value =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_latest_market_value csv" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="player_latest_market_value.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_latest_market_value csv"
+	lineageTag: 90c29937-d444-463e-85a8-85cfc53ca448
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_market_value csv' =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_market_value csv1" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="player_market_value.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_market_value csv1"
+	lineageTag: 07d50ddf-c746-45b2-9195-4d8e85f3f1d2
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_national_performanc =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_national_performances csv" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="player_national_performances.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_national_performances csv"
+	lineageTag: 3ac96f39-c04c-4cab-a56c-3e1e304c30c5
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_performances csv' =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_performances csv1" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="player_performances.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_performances csv1"
+	lineageTag: 8bc7ec29-adae-4e14-8111-300fcb81115d
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_profiles csv' =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_profiles csv1" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="player_profiles.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_profiles csv1"
+	lineageTag: 61737184-0a9d-4a90-b3ef-c11e483126fa
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_teammates_played_wi =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_teammates_played_with csv" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="player_teammates_played_with.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_player_teammates_played_with csv"
+	lineageTag: 025bf965-1b95-4524-a427-e19bebd2337a
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_team_children csv' =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_team_children csv1" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="team_children.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_team_children csv1"
+	lineageTag: e59d9388-52e7-4bf2-bee9-827778cb5487
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_team_competitions_seasons =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_team_competitions_seasons csv" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="team_competitions_seasons.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_team_competitions_seasons csv"
+	lineageTag: db4be3f4-a118-4e53-9e86-e64aef5dd816
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_team_details csv' =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_team_details csv1" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="team_details.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_team_details csv1"
+	lineageTag: d17234b6-dfc8-4411-b24b-dd5ea61820de
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression 'C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_transfer_history csv' =
+		let
+		    Source = Folder.Files("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football"),
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_transfer_history csv1" = Source{[#"Folder Path"="C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\",Name="transfer_history.csv"]}[Content]
+		in
+		    #"C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\_transfer_history csv1"
+	lineageTag: e000240e-1c74-46bb-a234-f353b84f1209
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Binary
+
+expression EndDate = #date(2026, 8, 31) meta [IsParameterQuery=true, Type="Date", IsParameterQueryRequired=true]
+	lineageTag: 097303b0-d203-4532-8ad4-0a5c40aacb61
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Date
+

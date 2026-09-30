@@ -1,0 +1,210 @@
+table PlayerSeasonScatter
+	lineageTag: bc10473a-2f4e-41c9-b0a4-b7fb60ece0bc
+
+	column player_id
+		formatString: 0
+		lineageTag: ef2fce5b-fd5e-49b7-8c47-d7011caf0c36
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: SeasonEndMarketValue[player_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Season
+		lineageTag: bb1c51e2-9910-4015-ba85-cdf44b059eca
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: SeasonEndMarketValue[Season]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Date
+		formatString: General Date
+		lineageTag: 6f7d32ef-d0ae-4f81-b8cf-ef953152e38f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: SeasonEndMarketValue[Last_Date]
+
+		variation Variation
+			isDefault
+			relationship: 8d1e9391-8926-4732-adef-2d92e9798841
+			defaultHierarchy: LocalDateTable_78c58082-b601-439b-9471-b1e51390ecd7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Last_Value
+		formatString: 0
+		lineageTag: de541614-fa23-4e74-9946-a30caa2cdf08
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: SeasonEndMarketValue[Last_Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Goals
+		formatString: 0
+		lineageTag: ada7d2b7-d8ce-4563-be47-f67377516f7d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Goals]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Assists
+		formatString: 0
+		lineageTag: 23386715-86e1-46bb-bbad-bb156d176278
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Assists]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Total_Goals_Assists
+		formatString: 0
+		lineageTag: b869bad2-544c-457c-a8bc-e6fd9cdec937
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Total_Goals_Assists]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MarketValuePctChange =
+			
+			VAR CurrentPlayer = [player_id]
+			VAR CurrentSeason = [season]
+			VAR CurrentValue = [Last_Value]
+			VAR StartYear = VALUE(LEFT(CurrentSeason, 2))
+			VAR PrevStart = StartYear - 1
+			VAR PrevEnd = PrevStart + 1
+			VAR PrevSeason = FORMAT(PrevStart, "00") & "/" & FORMAT(PrevEnd, "00")
+			VAR PrevValue =
+			    CALCULATE(
+			        MAX('SeasonEndMarketValue'[Last_Value]),
+			        'SeasonEndMarketValue'[player_id] = CurrentPlayer,
+			        'SeasonEndMarketValue'[season] = PrevSeason
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(PrevValue) || PrevValue = 0,
+			        BLANK(),
+			        (CurrentValue - PrevValue) / PrevValue * 100
+			    )
+		lineageTag: 7078e307-7f99-4fce-93bd-d533b445e0d7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PerformancePctChange =
+			
+			VAR CurrentPlayer = [player_id]
+			VAR CurrentSeason = [season]
+			VAR CurrentPerf = [Total_Goals_Assists]
+			VAR StartYear = VALUE(LEFT(CurrentSeason, 2))
+			VAR PrevStart = StartYear - 1
+			VAR PrevEnd = PrevStart + 1
+			VAR PrevSeason = FORMAT(PrevStart, "00") & "/" & FORMAT(PrevEnd, "00")
+			VAR PrevPerf =
+			    CALCULATE(
+			        MAX('SeasonPerformance'[Total_Goals_Assists]),
+			        'SeasonPerformance'[player_id] = CurrentPlayer,
+			        'SeasonPerformance'[season_name] = PrevSeason
+			    )
+			RETURN
+			    IF(
+			        ISBLANK(PrevPerf) || PrevPerf = 0,
+			        BLANK(),
+			        (CurrentPerf - PrevPerf) / PrevPerf * 100
+			    )
+		lineageTag: 11ab7277-5f09-4f2d-b7d2-1b44ed56b151
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MarketValuePctChange_Log =
+			
+			VAR PercentageValue = [MarketValuePctChange]
+			RETURN
+			    IF(
+			        ISBLANK(PercentageValue) || PercentageValue = 0,
+			        BLANK(),
+			        LOG(ABS(PercentageValue) + 1, 10)
+			    )
+		lineageTag: 85bfbe3a-8549-4118-a738-3d43d6e65f74
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MarketValuePctChange_Log_N =
+			
+			VAR PercentageValue = [MarketValuePctChange]
+			VAR Sign = IF(PercentageValue < 0, -1, 1)
+			RETURN
+			    IF(
+			        ISBLANK(PercentageValue) || PercentageValue = 0,
+			        BLANK(),
+			        Sign * LOG(ABS(PercentageValue) + 1, 10)
+			    )
+		lineageTag: a2081f51-3501-4054-8a29-7e04767b4b2e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PerformancePctChange_Log_N =
+			
+			VAR PercentageValue = [PerformancePctChange]
+			VAR Sign = IF(PercentageValue < 0, -1, 1)
+			RETURN
+			    IF(
+			        ISBLANK(PercentageValue) || PercentageValue = 0,
+			        BLANK(),
+			        Sign * LOG(ABS(PercentageValue) + 1, 10)
+			    )
+		lineageTag: 67a49f6c-e604-4e27-9da3-b1cb7d2f7303
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition PlayerSeasonScatter = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    'SeasonEndMarketValue',
+				    "Goals", CALCULATE(
+				        MAX('SeasonPerformance'[Goals]),
+				        FILTER(
+				            ALL('SeasonPerformance'),
+				            'SeasonPerformance'[player_id] = 'SeasonEndMarketValue'[player_id]
+				            && 'SeasonPerformance'[season_name] = 'SeasonEndMarketValue'[season]
+				        )
+				    ),
+				    "Assists", CALCULATE(
+				        MAX('SeasonPerformance'[Assists]),
+				        FILTER(
+				            ALL('SeasonPerformance'),
+				            'SeasonPerformance'[player_id] = 'SeasonEndMarketValue'[player_id]
+				            && 'SeasonPerformance'[season_name] = 'SeasonEndMarketValue'[season]
+				        )
+				    ),
+				    "Total_Goals_Assists", CALCULATE(
+				        MAX('SeasonPerformance'[Total_Goals_Assists]),
+				        FILTER(
+				            ALL('SeasonPerformance'),
+				            'SeasonPerformance'[player_id] = 'SeasonEndMarketValue'[player_id]
+				            && 'SeasonPerformance'[season_name] = 'SeasonEndMarketValue'[season]
+				        )
+				    )
+				)
+
+	annotation PBI_Id = ac97d005dee248dc953cce932b65469e
+

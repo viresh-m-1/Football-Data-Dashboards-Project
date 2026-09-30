@@ -1,0 +1,94 @@
+table player_national_performances
+	lineageTag: 29e70590-183f-4a42-b0f1-612830a5ff5c
+
+	column player_id
+		dataType: int64
+		formatString: 0
+		lineageTag: e2dcfedf-6af5-4033-9e90-86bd57f2e225
+		summarizeBy: sum
+		sourceColumn: player_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ff91761-56cf-4eab-b548-b3f5020a5252
+		summarizeBy: sum
+		sourceColumn: team_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column matches
+		dataType: int64
+		formatString: 0
+		lineageTag: 00d855da-cae4-43a7-8115-2e5d6696d6c7
+		summarizeBy: sum
+		sourceColumn: matches
+
+		annotation SummarizationSetBy = Automatic
+
+	column goals
+		dataType: int64
+		formatString: 0
+		lineageTag: 6dd877dc-9797-401b-8cd2-b65d255b57fd
+		summarizeBy: sum
+		sourceColumn: goals
+
+		annotation SummarizationSetBy = Automatic
+
+	column shirt_number
+		dataType: int64
+		formatString: 0
+		lineageTag: a16db9f0-2bf5-4c23-9fc5-88c8ee267ca1
+		summarizeBy: sum
+		sourceColumn: shirt_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column debut
+		dataType: string
+		lineageTag: b6e23d20-c44b-4c85-99c8-d9f72bbdd20a
+		summarizeBy: none
+		sourceColumn: debut
+
+		annotation SummarizationSetBy = Automatic
+
+	column coach_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3573ff41-d0a7-418d-8823-8969d1098b06
+		summarizeBy: sum
+		sourceColumn: coach_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column debut_game_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c6e7840f-801e-4a77-b684-3791e6f8683c
+		summarizeBy: sum
+		sourceColumn: debut_game_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column career_state
+		dataType: string
+		lineageTag: 33dd8244-c033-4b35-a5b9-b5e72979ce50
+		summarizeBy: none
+		sourceColumn: career_state
+
+		annotation SummarizationSetBy = Automatic
+
+	partition player_national_performances = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\player_national_performances.csv"),[Delimiter=",", Columns=9, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"player_id", Int64.Type}, {"team_id", Int64.Type}, {"matches", Int64.Type}, {"goals", Int64.Type}, {"shirt_number", Int64.Type}, {"debut", type text}, {"coach_id", Int64.Type}, {"debut_game_id", Int64.Type}, {"career_state", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

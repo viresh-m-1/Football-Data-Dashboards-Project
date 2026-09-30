@@ -1,0 +1,79 @@
+table team_competitions_seasons
+	lineageTag: 6b7d9cf5-b79e-4e17-a166-1d12ce0e73de
+
+	column club_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 57575e87-4f72-4b5d-8b79-7edc4b373b76
+		summarizeBy: none
+		sourceColumn: club_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column team_name
+		dataType: string
+		lineageTag: b68102ad-bb9f-4b8f-a21c-df2c19eb676b
+		summarizeBy: none
+		sourceColumn: team_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column season_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2fced09b-9491-4f05-99ba-3dfc3214c065
+		summarizeBy: sum
+		sourceColumn: season_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_name
+		dataType: string
+		lineageTag: 1b512a01-88c2-4a42-a447-a2587b22c874
+		summarizeBy: none
+		sourceColumn: competition_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column competition_id
+		dataType: string
+		lineageTag: 407fc037-f21e-4623-8a04-db2ab519e2c9
+		summarizeBy: none
+		sourceColumn: competition_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column club_division
+		dataType: string
+		lineageTag: b5b47141-c8ea-405f-8593-12b177c200a6
+		summarizeBy: none
+		sourceColumn: club_division
+
+		annotation SummarizationSetBy = Automatic
+
+	column _last_modified_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 27e98818-310e-411f-87b0-56fc33da7564
+		summarizeBy: none
+		sourceColumn: _last_modified_at
+
+		variation Variation
+			isDefault
+			relationship: 2b704d77-80c2-4930-8d6b-17ead8c88c5a
+			defaultHierarchy: LocalDateTable_632b9eb2-a17c-404d-9673-caed27e94d53.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition team_competitions_seasons = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\JIGNESHHHHH\Documents\SQL\Datasets\football\team_competitions_seasons.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"club_id", Int64.Type}, {"team_name", type text}, {"season_id", Int64.Type}, {"competition_name", type text}, {"competition_id", type text}, {"club_division", type text}, {"_last_modified_at", type datetime}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
